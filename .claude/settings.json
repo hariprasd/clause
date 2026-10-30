@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST localhost:*)",
+      "Bash(curl -s localhost:*)",
+      "Bash(jq *)",
+      "Bash(node scripts/*)",
+      "Bash(npm run *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in */screens/*.json) node \"$CLAUDE_PROJECT_DIR/scripts/lint.mjs\" \"$f\" 2>&1;; esac"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/session-start.mjs\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/listener-check.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}

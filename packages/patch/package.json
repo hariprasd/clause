@@ -1,0 +1,10 @@
+{
+  "name": "@clause/patch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Anchored edits as data: exact find/replace records that are applied and verified, or refused whole.",
+  "exports": {
+    ".": "./src/index.mjs"
+  }
+}

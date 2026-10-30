@@ -1,0 +1,19 @@
+{
+  "title": "General design",
+  "width": 1080,
+  "height": 1350,
+  "tree": {
+    "t": "stack",
+    "i": "root",
+    "dir": "column",
+    "gap": 28,
+    "pad": 72,
+    "bg": "#0b0b0c",
+    "children": [
+      { "t": "text", "i": "eyebrow", "content": "CLAUSE", "size": 14, "tracking": 12, "color": "#e8b84b" },
+      { "t": "text", "i": "headline", "content": "Design help that starts from your request.", "size": 64, "lh": 68, "color": "#f5f5f2" },
+      { "t": "box", "i": "rule", "h": 1, "w": 120, "bg": "#3a3a3d" },
+      { "t": "text", "i": "body", "content": "No design system required. Primitives and raw values are enough to get a first honest version on the page.", "size": 22, "lh": 32, "color": "#a5a5a0" }
+    ]
+  }
+}

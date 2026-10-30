@@ -1,0 +1,46 @@
+{
+  "title": "Hello Clause",
+  "width": 1440,
+  "height": 760,
+  "ds": "examples/catalog",
+  "tree": {
+    "t": "stack",
+    "i": "root",
+    "fill": "both",
+    "gap": "xl",
+    "pad": "2xl",
+    "bg": "bg-primary",
+    "children": [
+      {
+        "t": "text",
+        "i": "title",
+        "content": "Hello, Clause",
+        "style": "Display md/Semibold",
+        "color": "text-primary"
+      },
+      {
+        "t": "text",
+        "i": "intro",
+        "content": "This screen exists so a fresh clone can prove the compiler and the lint before it has a catalog of its own. It is not a design system, and it is not yours yet.",
+        "style": "Text md/Regular",
+        "color": "text-secondary",
+        "maxLines": 3
+      },
+      {
+        "c": "card",
+        "i": "next",
+        "p": { "Elevated": "false" },
+        "text": {
+          "Title": "Your catalog goes here",
+          "Body": "Extract your design system from Figma, then delete this example and build for real."
+        }
+      },
+      {
+        "c": "button",
+        "i": "start",
+        "p": { "Hierarchy": "Primary", "Size": "md" },
+        "text": { "Button": "Start building" }
+      }
+    ]
+  }
+}

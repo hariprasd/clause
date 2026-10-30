@@ -1,0 +1,27 @@
+{
+  "spacing": {
+    "spacing-xs": "10:1",
+    "spacing-sm": "10:2",
+    "spacing-md": "10:3",
+    "spacing-lg": "10:4",
+    "spacing-xl": "10:5",
+    "spacing-2xl": "10:6"
+  },
+  "radius": {
+    "radius-sm": "11:1",
+    "radius-md": "11:2"
+  },
+  "colors": {},
+  "colorAliases": {
+    "bg-primary": "12:1",
+    "bg-secondary": "12:2",
+    "text-primary": "12:3",
+    "text-secondary": "12:4",
+    "border-secondary": "12:5"
+  },
+  "textStyles": {
+    "Display md/Semibold": "13:1",
+    "Text md/Regular": "13:2",
+    "Text sm/Regular": "13:3"
+  }
+}

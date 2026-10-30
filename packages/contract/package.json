@@ -1,0 +1,18 @@
+{
+  "name": "@clause/contract",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The one source of truth for everything the Clause server, Figma plugin, extension and CLI say to each other. Zero imports.",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./routes": "./src/routes.mjs",
+    "./events": "./src/events.mjs",
+    "./keys": "./src/keys.mjs",
+    "./errors": "./src/errors.mjs",
+    "./version": "./src/version.mjs"
+  },
+  "files": [
+    "src"
+  ]
+}

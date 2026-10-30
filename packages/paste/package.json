@@ -1,0 +1,15 @@
+{
+  "name": "@clause/paste",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The one OS-aware package: put a capture into Figma with a keystroke, or say honestly that you cannot.",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./darwin": "./src/drivers/darwin.mjs",
+    "./manual": "./src/drivers/manual.mjs"
+  },
+  "dependencies": {
+    "@clause/contract": "*"
+  }
+}

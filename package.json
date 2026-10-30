@@ -1,0 +1,38 @@
+{
+  "name": "clause",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Clause — a closed space for design-system work: capture the web into Figma, build screens from your real components, review them with an agent.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "clause": "node packages/cli/bin/clause.mjs",
+    "learn": "node packages/workspace/bin/learn.mjs",
+    "setup": "node scripts/setup.mjs",
+    "live": "node scripts/tokens-css.mjs && node scripts/build-plugin.mjs && node scripts/serve.mjs --open",
+    "tokens": "node scripts/tokens-css.mjs",
+    "plugin": "node scripts/build-plugin.mjs",
+    "inspect": "node scripts/inspect.mjs",
+    "clean": "node scripts/clean.mjs",
+    "inbox": "node scripts/inbox.mjs",
+    "reply": "node scripts/reply.mjs",
+    "status": "node scripts/status.mjs",
+    "vendor:verify": "node scripts/vendor-verify.mjs",
+    "vendor:adopt": "node scripts/vendor-adopt.mjs",
+    "vendor:pin": "node scripts/vendor-pin.mjs",
+    "example:check": "node scripts/lint.mjs examples/hello.json && node scripts/lint.mjs examples/general.json",
+    "test": "node --test",
+    "lint": "biome check packages",
+    "format": "biome check --write packages",
+    "check": "npm run lint && npm run vendor:verify && npm run example:check && npm test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.4"
+  }
+}

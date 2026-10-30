@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clause exports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--color-bg-secondary);color:var(--color-text-primary);font-family:var(--font-body)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-xl);padding:var(--spacing-3xl) var(--spacing-5xl) var(--spacing-xl)}
+  h1{margin:0;font-family:var(--font-display);font-weight:600;font-size:30px;line-height:38px}
+  .sub{color:var(--color-text-tertiary);font-size:13px;margin-top:4px}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-full);font-size:12px;border:1px solid var(--color-border-secondary);background:var(--color-bg-primary);color:var(--color-text-secondary)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--color-utility-success-500)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:var(--spacing-xl);padding:var(--spacing-xl) var(--spacing-5xl) var(--spacing-7xl)}
+  .card{background:var(--color-bg-primary);border:1px solid var(--color-border-secondary);border-radius:var(--radius-4xl);overflow:hidden;display:flex;flex-direction:column}
+  .thumb{position:relative;width:100%;overflow:hidden;background:#e9e8e6;border-bottom:1px solid var(--color-border-secondary)}
+  .thumb iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
+  .thumb a{position:absolute;inset:0}
+  .meta{padding:var(--spacing-xl);display:flex;flex-direction:column;gap:var(--spacing-md)}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-md)}
+  .name{font-weight:600;font-size:15px}
+  .file{font-family:var(--font-code);font-size:11px;color:var(--color-text-quaternary)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11px;padding:2px 8px;border-radius:var(--radius-full);background:var(--color-bg-tertiary);color:var(--color-text-secondary)}
+  .tag.ok{background:var(--color-bg-success-secondary);color:var(--color-text-success-primary)}
+  .tag.warn{background:var(--color-bg-warning-secondary);color:var(--color-text-warning-primary)}
+  .actions{display:flex;gap:var(--spacing-md);margin-top:var(--spacing-xs)}
+  button,.btn{font:500 13px var(--font-body);padding:7px 12px;border-radius:var(--radius-xl);border:1px solid var(--color-border-primary);background:var(--color-bg-primary);color:var(--color-text-primary);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+  button:hover,.btn:hover{background:var(--color-bg-primary_hover)}
+  .primary{background:var(--color-bg-brand-solid);border-color:var(--color-bg-brand-solid);color:var(--color-text-white)}
+  .primary:hover{background:var(--color-bg-brand-solid_hover)}
+  .empty{padding:var(--spacing-7xl);text-align:center;color:var(--color-text-tertiary)}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--color-bg-brand-solid);color:#fff;padding:10px 16px;border-radius:var(--radius-xl);font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+  #toast.on{opacity:1}
+</style></head>
+<body>
+<header>
+  <div><h1>Exports</h1><div class="sub">Real, token-driven HTML generated from your screens. Drop any file into the <b>Clause Assist</b> plugin to bring it back into Figma.</div></div>
+  <div style="display:flex;gap:8px"><span class="pill" id="plug"><span class="dot" id="plugdot" style="background:var(--color-utility-warning-500)"></span><span id="plugtxt">checking Figma plugin…</span></span><span class="pill"><span class="dot"></span><span id="count">0 exports</span></span></div>
+</header>
+<div id="grid" class="grid"></div>
+<div id="toast"></div>
+<script>
+const grid = document.getElementById("grid"), toast = document.getElementById("toast");
+let seen = {};
+const ago = ms => { const s = Math.max(1, Math.round((Date.now() - ms) / 1000)); return s < 60 ? s + "s ago" : s < 3600 ? Math.round(s / 60) + "m ago" : Math.round(s / 3600) + "h ago"; };
+function say(t) { toast.textContent = t; toast.classList.add("on"); setTimeout(() => toast.classList.remove("on"), 2200); }
+function fit(card, e) { const t = card.querySelector(".thumb"), f = t.querySelector("iframe"); const s = t.clientWidth / e.width; t.style.height = Math.round(Math.min(e.height, 1100) * s) + "px"; f.style.width = e.width + "px"; f.style.height = Math.min(e.height, 1100) + "px"; f.style.transform = "scale(" + s + ")"; }
+function make(e) {
+  const c = document.createElement("div"); c.className = "card"; c.dataset.name = e.name;
+  c.innerHTML = `
+    <div class="thumb"><iframe loading="lazy" src="/export/${e.name}.html"></iframe><a href="/export/${e.name}.html" target="_blank" aria-label="Open ${e.title}"></a></div>
+    <div class="meta">
+      <div class="row"><span class="name">${e.title}</span><span class="file">${e.name}.html</span></div>
+      <div class="tags"></div>
+      <div class="actions">
+        <a class="btn" href="/export/${e.name}.html" target="_blank">Open</a>
+        <a class="btn" href="/export/${e.name}.html?download=1">Download</a>
+        <a class="btn primary" data-figma target="_blank" hidden>Open in Figma</a>
+        <button data-push>Rebuild</button>
+      </div>
+    </div>`;
+  c.querySelector("[data-push]").onclick = async () => { const r = await fetch("/push/" + e.name, { method: "POST" }); say(r.ok ? "Queued — the Figma plugin will rebuild " + e.title : "Could not queue " + e.name); };
+  return c;
+}
+function paint(c, e) {
+  const fa = c.querySelector("[data-figma]"); if (e.figmaUrl) { fa.href = e.figmaUrl; fa.hidden = false; } else fa.hidden = true;
+  c.querySelector(".tags").innerHTML =
+    `<span class="tag ${e.source === "figma-dom" ? "ok" : "warn"}">${e.source === "figma-dom" ? "built from Figma" : "approximate · build in Figma"}</span>` +
+    `<span class="tag">${e.components} components</span><span class="tag">${e.tokens} tokens</span><span class="tag">${e.screens} screen${e.screens > 1 ? "s" : ""}</span><span class="tag">${e.kb} kb</span><span class="tag">${ago(e.mtime)}</span>`;
+}
+async function plugin() {
+  try { const s = await (await fetch("/status")).json(); const d = document.getElementById("plugdot"), t = document.getElementById("plugtxt");
+    d.style.background = s.plugin ? "var(--color-utility-success-500)" : "var(--color-utility-warning-500)";
+    t.textContent = s.plugin ? "Figma plugin live" : "Figma plugin not running — press ⌘⌥P in Figma"; } catch (e) {}
+}
+async function tick() {
+  plugin();
+  try {
+    const list = await (await fetch("/exports.json")).json();
+    document.getElementById("count").textContent = list.length + " export" + (list.length === 1 ? "" : "s");
+    if (!list.length) { grid.innerHTML = '<div class="empty">No exports yet — save a file in <code>screens/</code>.</div>'; return; }
+    if (grid.querySelector(".empty")) grid.innerHTML = "";
+    for (const e of list) {
+      let c = grid.querySelector(`[data-name="${e.name}"]`);
+      if (!c) { c = make(e); grid.appendChild(c); fit(c, e); }
+      if (seen[e.name] && seen[e.name] !== e.mtime) { const f = c.querySelector("iframe"); f.src = f.src; }
+      seen[e.name] = e.mtime; paint(c, e); fit(c, e);
+    }
+    for (const c of [...grid.children]) if (!list.find(e => e.name === c.dataset.name)) c.remove();
+  } catch (e) {}
+}
+tick(); setInterval(tick, 2000); addEventListener("resize", tick);
+</script></body></html>

@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "Clause Capture",
+  "version": "1.0.0",
+  "clause_protocol": 1,
+  "description": "Capture a web page as Figma layers",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "declarativeNetRequest",
+    "storage",
+    "debugger"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Clause Capture"
+  },
+  "commands": {
+    "clause-capture": {
+      "description": "Copy the current page to Figma"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "shortcut.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

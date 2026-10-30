@@ -1,0 +1,15 @@
+# The user's layer and their catalog. Created on first run, never shipped, never overwritten.
+.clause/
+ds/
+screens/
+
+# Machine-local / generated
+notes/
+drafts/
+out/
+exports/
+node_modules/
+.DS_Store
+
+# Built for GitHub Pages by scripts/stage-bookmarklet.mjs
+.pages/

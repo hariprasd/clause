@@ -1,0 +1,16 @@
+{
+  "name": "@clause/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The clause command: set a folder up, check the machine, and (later) run the server it talks to.",
+  "bin": {
+    "clause": "./bin/clause.mjs"
+  },
+  "dependencies": {
+    "@clause/capture": "*",
+    "@clause/contract": "*",
+    "@clause/paste": "*",
+    "@clause/workspace": "*"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@clause/workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The user's layer: a .clause/ workspace that holds what Clause learns and every change they make to the system.",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./layout": "./src/layout.mjs",
+    "./init": "./src/init.mjs",
+    "./learnings": "./src/learnings.mjs",
+    "./overrides": "./src/overrides.mjs"
+  },
+  "bin": {
+    "clause-learn": "./bin/learn.mjs"
+  },
+  "dependencies": {
+    "@clause/contract": "*",
+    "@clause/patch": "*"
+  }
+}

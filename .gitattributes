@@ -1,0 +1,18 @@
+# Every text file is checked out with LF on every OS. Windows' default CRLF
+# checkout made `biome check` fail and changed the plugin build stamp, which
+# hashes source bytes.
+* text=auto eol=lf
+
+# Binaries are never line-ending converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.pdf binary

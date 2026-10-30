@@ -1,0 +1,37 @@
+{
+  "name": "Clause Assist",
+  "id": "clause-assist-dev",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "permissions": [
+    "teamlibrary"
+  ],
+  "enablePrivatePluginApi": true,
+  "menu": [
+    {
+      "name": "Open Clause Assist",
+      "command": "panel"
+    },
+    {
+      "name": "Start (silent)",
+      "command": "start"
+    },
+    {
+      "name": "Extract components & tokens",
+      "command": "extract"
+    }
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ],
+    "devAllowedDomains": [
+      "http://localhost:8787"
+    ]
+  }
+}

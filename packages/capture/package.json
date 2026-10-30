@@ -1,0 +1,17 @@
+{
+  "name": "@clause/capture",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "The capture door: a web page becomes Figma layers, on the clipboard or straight into the open file.",
+  "scripts": {
+    "zip": "node ../../scripts/build-extension.mjs"
+  },
+  "dependencies": {
+    "@clause/patch": "*"
+  },
+  "exports": {
+    "./vendor/patches": "./vendor/patches.mjs",
+    "./vendor/verify": "./vendor/verify.mjs"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "textStyles": [
+    { "name": "Display md/Semibold", "fontFamily": "Inter", "fontStyle": "Semi Bold" },
+    { "name": "Text md/Regular", "fontFamily": "Inter", "fontStyle": "Regular" },
+    { "name": "Text sm/Regular", "fontFamily": "Inter", "fontStyle": "Regular" }
+  ]
+}

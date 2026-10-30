@@ -1,0 +1,24 @@
+{
+  "local": [
+    {
+      "key": "button",
+      "id": "1:1",
+      "set": "1:2",
+      "default": "Primary/Md",
+      "props": {
+        "Hierarchy": ["Primary", "Secondary", "Ghost"],
+        "Size": ["sm", "md", "lg"]
+      },
+      "texts": ["Button"]
+    },
+    {
+      "key": "card",
+      "id": "1:3",
+      "set": "1:4",
+      "default": "Default",
+      "props": { "Elevated": ["true", "false"] },
+      "texts": ["Title", "Body"]
+    }
+  ],
+  "library": []
+}
